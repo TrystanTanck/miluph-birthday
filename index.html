@@ -4,136 +4,368 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday, [Wife's Name]! ❤️</title>
+  <title>Happy Birthday, My Love! ❤️</title>
   <style>
-    /* CSS Styling */
+    /* BASE STYLES & FONT IMPORT (Imagine a romantic script font here) */
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;500&display=swap');
+
     body {
-      font-family: 'Georgia', serif;
-      background-color: #f7f3f0;
-      /* Soft, warm background */
-      color: #333;
+      font-family: 'Montserrat', sans-serif;
       margin: 0;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 30px;
-      background-color: #ffffff;
-      border-radius: 15px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    h1 {
-      color: #d17882;
-      /* A romantic, soft pink/red */
-      font-family: 'Playfair Display', serif;
-      /* Use a stylish font */
-      font-size: 3em;
-      margin-bottom: 5px;
-    }
-
-    h2 {
-      color: #8b4513;
-      /* Earthy brown for warmth */
-      font-size: 1.5em;
-      margin-top: 0;
-      margin-bottom: 30px;
-    }
-
-    .main-image {
-      width: 100%;
-      max-width: 400px;
-      /* Adjust size as needed */
-      height: auto;
-      border-radius: 10px;
-      margin-bottom: 30px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-      object-fit: cover;
-    }
-
-    .message-box {
-      text-align: left;
-      padding: 20px 0;
-      line-height: 1.6;
-      font-size: 1.1em;
-    }
-
-    .special-section {
-      background-color: #ffe4e1;
-      /* Light blush background */
-      padding: 20px;
-      border-radius: 10px;
-      margin-top: 30px;
-      text-align: left;
-    }
-
-    .special-section h3 {
-      color: #d17882;
-      text-align: center;
-      margin-top: 0;
-    }
-
-    ul {
-      list-style-type: none;
       padding: 0;
+      background-color: #fce4ec;
+      /* Soft light pink background */
+      color: #4a148c;
+      /* Deep purple text for contrast */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 200vh;
+      overflow-x: hidden;
+      text-align: center;
     }
 
-    li {
-      margin-bottom: 10px;
-      padding-left: 10px;
-      border-left: 3px solid #d17882;
+    /* ANIMATION DEFINITION */
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.05);
+      }
+
+      100% {
+        transform: scale(1);
+      }
     }
 
-    .signature {
-      margin-top: 40px;
-      font-style: italic;
+    /* HEADER SECTION */
+    .header {
+      padding: 40px 20px;
+      margin-top: 5vh;
+    }
+
+    /* HEADER SECTION */
+    .header {
+      padding: 40px 20px;
+      animation: fadeIn 1.5s ease-out;
+    }
+
+    .header h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 4.5em;
+      color: #e91e63;
+      /* Vibrant pink */
+      margin-bottom: 5px;
+      animation: pulse 3s infinite;
+    }
+
+    .header p {
       font-size: 1.2em;
-      color: #555;
-      text-align: right;
+      font-weight: 300;
+    }
+
+    /* MESSAGE BLOCKS */
+    .message-block {
+      padding: 15px;
+      margin: 15px 10px;
+      border-radius: 8px;
+      max-width: 600px;
+      font-size: 1.2em;
+      font-weight: 500;
+      color: #880e4f;
+      background-color: #f8bbd0;
+
+      /* Initial state: Hidden and displaced for the sliding effect */
+      opacity: 0;
+      transform: translateY(20px);
+      /* Transition for smooth animation when 'is-visible' is added */
+      transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+
+    /* SLIDESHOW CONTAINER */
+    .slideshow-container {
+      position: relative;
+      max-width: 600px;
+      margin: 40px auto;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      border-radius: 15px;
+      overflow: hidden;
+      min-height: 400px;
+
+      /* Initial state: Hidden and displaced for the sliding effect */
+      opacity: 0;
+      transform: translateY(50px);
+      /* Transition for smooth animation when 'is-visible' is added */
+      transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+    }
+
+    /* CLASS ADDED BY JAVASCRIPT WHEN SCROLLED INTO VIEW */
+    .is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* INDIVIDUAL SLIDES */
+    .mySlides {
+      display: none;
+      /* Only the active slide will be visible via JS (manual setup here) */
+      animation: fadeIn 1.5s ease-out;
+    }
+
+    .mySlides img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .caption {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: rgba(233, 30, 99, 0.8);
+      /* Semi-transparent pink overlay */
+      color: white;
+      padding: 10px;
+      font-style: italic;
+      font-weight: 500;
+      animation: fadeIn 4s ease-out forwards;
+      /* Delayed fade in */
+    }
+
+    /* MESSAGE BLOCKS */
+    .message-block {
+      padding: 15px;
+      margin: 15px 10px;
+      border-radius: 8px;
+      max-width: 600px;
+      font-size: 1.2em;
+      font-weight: 500;
+      color: #880e4f;
+      background-color: #f8bbd0;
+
+      /* Initially hidden and displaced for the sliding effect */
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+
+    /* Class added by JavaScript when the element is visible */
+    .is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* INDIVIDUAL SLIDES */
+    .mySlides {
+      display: none;
+      /* Simple fade effect for slide change */
+      animation: fadeIn 1s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .mySlides img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .caption {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: rgba(233, 30, 99, 0.8);
+      color: white;
+      padding: 10px;
+      font-style: italic;
+      font-weight: 500;
+    }
+
+    /* SIGNATURE */
+    .signature {
+      margin-top: 50px;
+      padding-bottom: 40px;
+      font-family: 'Dancing Script', cursive;
+      font-size: 2em;
+      color: #d81b60;
     }
   </style>
 </head>
 
 <body>
 
-  <div class="container">
-    <h1>Happy Birthday to the Love of My Life!</h1>
-    <h2>Celebrating My Amazing Wife, [Wife's Name]</h2>
+  <div class="header">
+    <h1>Happy Birthday,</h1>
+    <h1>miluph, Mrs.Tan</h1>
+    <h1>Bao Wen!</h1>
+    <p>A visual journey of our beautiful story...</p>
+  </div>
 
-    <img src="miluph.jpg" alt="A lovely picture of miluph Bao Wen" class="main-image">
+  <div class="message-block scroll-animate" id="msg1">
+    You are my sun, my moon, and all my stars. ✨
+  </div>
 
-    <div class="message-box">
-      <p>My Dearest [Wife's Name],</p>
-      <p>Today, the world gets to celebrate the day you came into it, and I get to celebrate the day you came into
-        **mine**. You are the most incredible person I know—a beautiful soul, a brilliant mind, and my very best friend.
-      </p>
-      <p>Every year with you is better than the last, filled with laughter, adventures, and a love that only grows
-        stronger. Thank you for everything you are and everything you do. You make every ordinary moment feel
-        extraordinary.</p>
-      <p>I wish you a day that is as bright, joyful, and wonderful as you are.</p>
+  <div class="message-block scroll-animate" id="msg2">
+    My life's greatest blessing.
+  </div>
+
+  <div class="message-block scroll-animate" id="msg3">
+    Thank you for being you.
+  </div>
+
+  <div class="slideshow-container scroll-animate" id="slideshow">
+
+    <div class="mySlides" style="display: block;">
+      <img src="photo1.jpg" alt="A photo from early in our relationship">
+      <div class="caption">Where it all began. Our first meet.</div>
     </div>
 
-    <div class="special-section">
-      <h3>5 Reasons Why I Fall For You Every Day:</h3>
-      <ul>
-        <li>Your incredible **[e.g., laugh/kindness/determination]**.</li>
-        <li>The way you always know how to **[e.g., make me smile/solve a problem]**.</li>
-        <li>Your passion for **[e.g., your hobbies/your work]**.</li>
-        <li>The beautiful, warm home we've built together.</li>
-        <li>Simply being *you*—my partner in everything.</li>
-      </ul>
+    <div class="mySlides">
+      <img src="photo2.jpg" alt="A photo from a memorable trip">
+      <div class="caption">Every moment with you is an unforgettable journey.</div>
     </div>
 
-    <div class="signature">
-      <p>I love you more than words can say.</p>
-      <p>With all my love, always and forever,</p>
-      <p>Your Husband, [Your Name] ❤️</p>
+    <div class="mySlides">
+      <img src="photo3.jpg" alt="A candid, loving photo">
+      <div class="caption">Your smile lights up my world.</div>
+    </div>
+
+    <div class="mySlides">
+      <img src="photo4.jpg">
+      <div class="caption">Bubu & Dudu</div>
+    </div>
+
+    <div class="mySlides">
+      <img src="photo5.jpg">
+      <div class="caption">miluph candid photo</div>
+    </div>
+
+    <div class="mySlides">
+      <img src="photo6.jpg">
+      <div class="caption">Cool miluph</div>
+    </div>
+
+    <div class="mySlides">
+      <img src="photo7.jpg">
+      <div class="caption">Lovely Miluph</div>
+    </div>
+
+    <div class="mySlides">
+      <img src="photo8.jpg">
+      <div class="caption">LDR fun</div>
+    </div>
+
+    <div class="mySlides">
+      <img src="photo9.jpg">
+      <div class="caption">LDR Marry, handsome man and pretty girl</div>
+    </div>
+
+    <div class="mySlides">
+      <img src="photo10.jpg">
+      <div class="caption">We are lover</div>
+    </div>
+
+    <div class="mySlides">
+      <img src="photo11.jpg">
+      <div class="caption">Miluph said YES!!</div>
+    </div>
+
+    <div class="mySlides">
+      <img src="photo12.jpg">
+      <div class="caption">Forver Together</div>
     </div>
 
   </div>
+
+  <div class="signature">
+    <p>Forever and always,</p>
+    <p> my heart is yours.</p>
+    <p>Your Husband,</p>
+    <p>bearpedia,</p>
+    <p>Chong Keat ❤️</p>
+  </div>
+
+  <script>
+    // --- 1. SLIDESHOW LOGIC (Automatic Cycle) ---
+    let slideIndex = 0;
+
+    function startSlideshow() {
+      let i;
+      let slides = document.getElementsByClassName("mySlides");
+
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+
+      slideIndex++;
+      if (slideIndex > slides.length) {
+        slideIndex = 1
+      }
+
+      slides[slideIndex - 1].style.display = "block";
+
+      // Call startSlideshow() again after 4 seconds (4000 milliseconds)
+      setTimeout(startSlideshow, 5400);
+    }
+
+
+    // --- 2. SCROLL ANIMATION LOGIC (Intersection Observer) ---
+
+    // Get all elements we want to animate on scroll
+    const animatedElements = document.querySelectorAll('.scroll-animate');
+
+    // Create the observer
+    const observer = new IntersectionObserver((entries, observer) => {
+      let delay = 0; // Initialize delay for staggering message blocks
+
+      entries.forEach(entry => {
+        // If the element is now visible in the viewport
+        if (entry.isIntersecting) {
+
+          // --- Stagger Message Blocks ---
+          if (entry.target.classList.contains('message-block')) {
+            // Apply the 'is-visible' class after a short delay
+            setTimeout(() => {
+              entry.target.classList.add('is-visible');
+            }, delay);
+            delay += 300; // Increase delay for the next message block (0.3 seconds)
+          }
+          // --- Slideshow Block ---
+          else if (entry.target.id === 'slideshow') {
+            // Start the slideshow and make the container visible
+            setTimeout(() => {
+              entry.target.classList.add('is-visible');
+              startSlideshow();
+            }, delay); // Start slideshow after messages have finished animating
+          }
+
+          // Stop observing this element once it's visible
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      // Options for the observer
+      root: null, // Relative to the viewport
+      rootMargin: '0px',
+      threshold: 0.5 // Trigger when 50% of the element is visible
+    });
+
+    // Tell the observer to watch all elements with the .scroll-animate class
+    animatedElements.forEach(element => {
+      observer.observe(element);
+    });
+
+  </script>
 
 </body>
 
